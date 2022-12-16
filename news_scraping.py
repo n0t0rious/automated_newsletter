@@ -7,8 +7,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-PASS = 'kynzo8-sehFib-dotzaw'
-EMAIL = 't918mgmt@gmail.com'
+PASS = input('Pass: ')
+EMAIL = input('Email: ')
 
 # Initialize driver, get news site, & maximize window
 driver = webdriver.Safari()
@@ -61,3 +61,4 @@ try:
             continue
 except selenium.common.exceptions.NoSuchElementException as e:
     print(e)
+
