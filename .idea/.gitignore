@@ -8,7 +8,9 @@
 /dataSources.local.xml
 /automated_newsletter.iml
 /vcs.xml
-/.idea/inspectionProfiles/profiles_settings.xml
-/.idea/other.xml
+/other.xml
 /.idea/modules.xml
 /.idea/misc.xml
+/.gitignore
+/.idea/inspectionProfiles/profiles_settings.xml
+/__pycache/*
