@@ -11,6 +11,9 @@
 /other.xml
 /.idea/modules.xml
 /.idea/misc.xml
-/.gitignore
 /.idea/inspectionProfiles/profiles_settings.xml
-/__pycache/*
+/inspectionProfiles/profiles_settings.xml
+/misc.xml
+/modules.xml
+/__pycache__
+/*.pyc
