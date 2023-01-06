@@ -15,5 +15,5 @@
 /inspectionProfiles/profiles_settings.xml
 /misc.xml
 /modules.xml
-/__pycache__
-/*.pyc
+scraping/__pycache__/*
+*.pyc
