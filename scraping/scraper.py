@@ -35,12 +35,15 @@ class Scraper(BaseDriver):
         links = []
 
         collection = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-            (By.XPATH, '/html/body/div[1]/div/main/div[5]/div/div[1]/div/ul'))).find_elements(By.TAG_NAME, 'li')
+            (By.XPATH, "//ul[contains(@class, 'story-collection__three_columns__2Th0B story-collection__list__2M49i')]")
+        )).find_elements(By.TAG_NAME, 'li')
 
         for story in collection:
             href = story.find_element(By.TAG_NAME, 'a').get_attribute('href')
             links.append(href)
 
-        return links
+        print(links)
+        print(len(collection))
     # TODO: Reformat code in a more logical and object oriented way
+
 
