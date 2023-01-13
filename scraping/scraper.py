@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from scraping.locators import MainPageLocators as mP
 
 
 class Scraper(BaseDriver):
@@ -31,7 +32,7 @@ class Scraper(BaseDriver):
         links = []
 
         collection = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-            (By.XPATH, "//ul[contains(@class, 'story-collection__three_columns__2Th0B story-collection__list__2M49i')]")
+            (*mP.SIGN_IN,)
         )).find_elements(By.TAG_NAME, 'li')
 
         for story in collection:
@@ -55,9 +56,21 @@ class Scraper(BaseDriver):
         print(contents[0])
         print(len(contents))
 
-        # Seems to be working, but I reached the "Article limit", will implement login logic and test again
+    def login(self):
+        sign_in = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+            (By.XPATH,
+             '//a[@href="https://www.reuters.com/signin/?redirect=https%3A%2F%2Fwww.reuters.com%2Fmarkets%2F"]')))
+        sign_in.send_keys(Keys.RETURN)
 
-    # TODO 1: Add login function and logic in an object oriented way & Figure out how to safely read in password and
+        password_input = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+            (*mP.PASS_INPUT,)))
+        password_input.send_keys('test')
+
+        email_input = self.driver.find_element(*mP.EMAIL_INPUT)
+        email_input.send_keys(f'testing')
+        email_input.submit()
+
+    # TODO 1: Add login function and logic & Figure out how to safely read in password and
     #         email for login
 
     # TODO 2: Test that method to extract paragraphs and store them works

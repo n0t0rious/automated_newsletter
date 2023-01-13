@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
     # Categories
-
     US_MARKETS = (By.CSS_SELECTOR, "button[data-id='/markets/us/']")
     # '/html/body/div[1]/div/main/div[5]/div/div[1]/div/ul'
     EU_MARKETS = (By.CSS_SELECTOR, "button[data-id='/markets/europe/']")
@@ -16,6 +15,9 @@ class MainPageLocators:
     # '/html/body/div[1]/div/main/div[4]/ul'
 
     # Stories
-
     STORY_COLLECTIONS = (By.CLASS_NAME, "story-collection__three_columns__2Th0B story-collection__list__2M49i")
 
+    # Login
+    SIGN_IN = (By.XPATH, "//ul[contains(@class, 'story-collection__three_columns__2Th0B story-collection__list__2M49i')]")
+    PASS_INPUT = (By.ID, 'password')
+    EMAIL_INPUT = (By.ID, 'email')
