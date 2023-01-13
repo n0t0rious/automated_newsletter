@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 
 
 class PageElement:
+    locator = ''
+
     def __set__(self, obj, value):
         driver = obj.driver
         WebDriverWait(driver, 100).until(

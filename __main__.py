@@ -3,10 +3,10 @@ from scraping.locators import MainPageLocators as mP
 
 
 def main():
-    with Scraper(teardown=True) as scraper:
+    with Scraper(teardown=False) as scraper:
         scraper.land_first_page()
-        scraper.select_category(*mP.MACRO_MATTERs)
-        scraper.get_stories()
+        scraper.select_category(*mP.US_MARKETS)
+        scraper.get_content()
 
 
 if __name__ == "__main__":
