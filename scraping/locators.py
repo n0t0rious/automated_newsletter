@@ -3,21 +3,22 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
     # Categories
-    US_MARKETS = (By.CSS_SELECTOR, "button[data-id='/markets/us/']")
-    # '/html/body/div[1]/div/main/div[5]/div/div[1]/div/ul'
-    EU_MARKETS = (By.CSS_SELECTOR, "button[data-id='/markets/europe/']")
-    # '/html/body/div[1]/div/main/div[5]/div/div[1]/div/ul'
-    MACRO_MATTERs = (By.CSS_SELECTOR, "button[data-id='/markets/macromatters/']")
-    # '/html/body/div[1]/div/main/div[4]/div/div[1]/div/ul'
-    STOCKS = (By.CSS_SELECTOR, "button[data-id='/markets/stocks/']")
-    # '/html/body/div[1]/div/div[3]/div[2]/div/div[1]/div/ul'
-    DEALS = (By.CSS_SELECTOR, "button[data-id='/markets/deals/']")
-    # '/html/body/div[1]/div/main/div[4]/ul'
+    US_MARKETS = (By.XPATH, "//button[@data-id='/markets/us/']")
+    EU_MARKETS = (By.XPATH, "//button[@data-id='/markets/europe/']")
+    MACRO_MATTERs = (By.XPATH, "//button[@data-id='/markets/macromatters/']")
+    STOCKS = (By.XPATH, "//button[@data-id='/markets/stocks/']")
+    DEALS = (By.XPATH, "//button[@data-id='/markets/deals/']")
 
     # Stories
-    STORY_COLLECTIONS = (By.CLASS_NAME, "story-collection__three_columns__2Th0B story-collection__list__2M49i")
+    COLLECTIONS = (By.XPATH, "//ul[contains(@class, 'story-collection__three_columns__2Th0B "
+                             "story-collection__list__2M49i')]")
+    ARTICLE = (By.XPATH, "//div[contains(@class, 'article-body__content__17Yit paywall-article')]")
 
     # Login
-    SIGN_IN = (By.XPATH, "//ul[contains(@class, 'story-collection__three_columns__2Th0B story-collection__list__2M49i')]")
-    PASS_INPUT = (By.ID, 'password')
-    EMAIL_INPUT = (By.ID, 'email')
+    SIGN_IN = (By.XPATH, '//a[@href="https://www.reuters.com/signin/?redirect=https%3A%2F%2Fwww.reuters.com%2Fmarkets'
+                         '%2F"]')
+    PASS_INPUT = (By.NAME, 'password')
+    EMAIL_INPUT = (By.NAME, 'email')
+
+
+

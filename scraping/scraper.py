@@ -1,9 +1,13 @@
+import time
+
 from scraping.basedriver import BaseDriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from scraping.locators import MainPageLocators as mP
+from scraping.login_handler import retrieve_credentials
+from scraping.element import wait
 
 
 class Scraper(BaseDriver):
@@ -25,56 +29,40 @@ class Scraper(BaseDriver):
         self.driver.get(url)
 
     def select_category(self, *category: tuple):
-        category = self.driver.find_element(*category)
-        category.send_keys(Keys.RETURN)
+        wait(self.driver, category).send_keys(Keys.RETURN)
 
     def get_stories(self):
         links = []
-
-        collection = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-            (*mP.SIGN_IN,)
-        )).find_elements(By.TAG_NAME, 'li')
-
+        collection = wait(self.driver, mP.COLLECTIONS).find_elements(By.TAG_NAME, 'li')
+        # TODO fix href locator to only pull relevant link
         for story in collection:
             href = story.find_element(By.TAG_NAME, 'a').get_attribute('href')
             links.append(href)
-
         return links
-        # print(links)
 
     def get_content(self):
         contents = {}
         links = self.get_stories()
-        for i, j in enumerate(links):
-            self.land_page(j)
-            paragraph = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-                (By.XPATH, "//div[contains(@class, 'article-body__content__17Yit paywall-article')]")
-            )).find_elements(By.TAG_NAME, 'p')
-            print(len(paragraph))
-            paragraphs = [paragraph[k].text for k in range(2)]
-            contents[i] = "-".join(paragraphs)
+        for story_num, link in enumerate(links):
+            self.land_page(link)
+            paragraph = wait(self.driver, mP.ARTICLE).find_elements(By.TAG_NAME, 'p')
+            paragraphs = [paragraph[paragraph_num].text for paragraph_num in range(2)]
+            contents[story_num] = "".join(paragraphs)
         print(contents[0])
-        print(len(contents))
 
     def login(self):
-        sign_in = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
-            (By.XPATH,
-             '//a[@href="https://www.reuters.com/signin/?redirect=https%3A%2F%2Fwww.reuters.com%2Fmarkets%2F"]')))
+        sign_in = wait(self.driver, mP.SIGN_IN)
         sign_in.send_keys(Keys.RETURN)
+        credentials = retrieve_credentials()
+        # TODO: Potential issue with skipping over pass input and only sending email
+        _pass = wait(self.driver, mP.PASS_INPUT)
+        _pass.send_keys(credentials[0])
 
-        password_input = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
-            (*mP.PASS_INPUT,)))
-        password_input.send_keys('test')
-
-        email_input = self.driver.find_element(*mP.EMAIL_INPUT)
-        email_input.send_keys(f'testing')
+        email_input = wait(self.driver, mP.EMAIL_INPUT)
+        email_input.send_keys(credentials[1])
         email_input.submit()
 
-    # TODO 1: Add login function and logic & Figure out how to safely read in password and
-    #         email for login
+    # TODO  Find a way to extract headers alongside links and store them
 
-    # TODO 2: Test that method to extract paragraphs and store them works
-    #         2.1 use dictionary to store individual stories, story num as key & values will be joined paragraphs
-
-    # TODO: Reformat get_content() & get_stories()  in a more logical and object oriented way, consider refactoring
+    # TODO  Reformat get_content() & get_stories()  in a more logical and object oriented way, consider refactoring
     #       reused code into helper funcs in a new class
