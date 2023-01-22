@@ -1,13 +1,11 @@
 import time
-
-from scraping.basedriver import BaseDriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from scraping.basedriver import BaseDriver
 from scraping.locators import MainPageLocators as mP
 from scraping.login_handler import retrieve_credentials
 from scraping.element import wait
+from scraping.constants import PARAGRAPH_LENGTH
 
 
 class Scraper(BaseDriver):
@@ -46,23 +44,22 @@ class Scraper(BaseDriver):
         for story_num, link in enumerate(links):
             self.land_page(link)
             paragraph = wait(self.driver, mP.ARTICLE).find_elements(By.TAG_NAME, 'p')
-            paragraphs = [paragraph[paragraph_num].text for paragraph_num in range(2)]
+            paragraphs = [paragraph[paragraph_num].text for paragraph_num in range(PARAGRAPH_LENGTH)]
             contents[story_num] = "".join(paragraphs)
-        print(contents[0])
+        return contents
 
     def login(self):
-        sign_in = wait(self.driver, mP.SIGN_IN)
-        sign_in.send_keys(Keys.RETURN)
+        wait(self.driver, mP.SIGN_IN).send_keys(Keys.RETURN)
         credentials = retrieve_credentials()
-        # TODO: Potential issue with skipping over pass input and only sending email
-        _pass = wait(self.driver, mP.PASS_INPUT)
-        _pass.send_keys(credentials[0])
 
         email_input = wait(self.driver, mP.EMAIL_INPUT)
-        email_input.send_keys(credentials[1])
-        email_input.submit()
+        _pass = wait(self.driver, mP.PASS_INPUT)
 
-    # TODO  Find a way to extract headers alongside links and store them
+        email_input.send_keys(credentials[0])
+        _pass.send_keys(credentials[1])
+        _pass.submit()
 
-    # TODO  Reformat get_content() & get_stories()  in a more logical and object oriented way, consider refactoring
+    # TODO: Find a way to extract headers alongside links and store them
+
+    # TODO: Reformat get_content() & get_stories()  in a more logical and object oriented way, consider refactoring
     #       reused code into helper funcs in a new class

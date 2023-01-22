@@ -19,6 +19,3 @@ class MainPageLocators:
                          '%2F"]')
     PASS_INPUT = (By.NAME, 'password')
     EMAIL_INPUT = (By.NAME, 'email')
-
-
-
