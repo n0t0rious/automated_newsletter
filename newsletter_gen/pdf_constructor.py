@@ -3,12 +3,6 @@ from fpdf import FPDF
 PAGE_WIDTH = 220
 PAGE_HEIGHT = 297
 
-contents = {1: 'Jan 20 (Reuters) - Federal prosecutors have seized nearly $700 million in assets from FTX founder Sam '
-               'Bankman-Fried in January, largely in the form of Robinhood stock, according to a Friday court filing. '
-               'Bankman-Fried, who has been accused of stealing billions of dollars from FTX customers to pay debts '
-               'incurred by his crypto-focused hedge fund, has pleaded not guilty to fraud charges. He is scheduled '
-               'to face trial in October.'}
-
 
 def generate_newsletter(content: dict):
     newsletter = FPDF()
