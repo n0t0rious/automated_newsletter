@@ -29,23 +29,28 @@ class Scraper(BaseDriver):
     def select_category(self, *category: tuple):
         wait(self.driver, category).send_keys(Keys.RETURN)
 
+    # TODO fix href locator to only pull relevant link
     def get_stories(self):
-        links = []
         collection = wait(self.driver, mP.COLLECTIONS).find_elements(By.TAG_NAME, 'li')
-        # TODO fix href locator to only pull relevant link
-        for story in collection:
-            href = story.find_element(By.TAG_NAME, 'a').get_attribute('href')
-            links.append(href)
+        links = tuple((story.find_element(By.TAG_NAME, 'a').get_attribute('href') for story in collection))
         return links
 
     def get_content(self):
+        # contents = {}
+        # links = self.get_stories()
+        # for story_num, link in enumerate(links):
+        #     self.land_page(link)
+        #     paragraph = wait(self.driver, mP.ARTICLE).find_elements(By.TAG_NAME, 'p')
+        #     paragraphs = [paragraph[paragraph_num].text for paragraph_num in range(PARAGRAPH_LENGTH)]
+        #     contents[story_num] = "".join(paragraphs)
+        # return contents
         contents = {}
         links = self.get_stories()
         for story_num, link in enumerate(links):
             self.land_page(link)
             paragraph = wait(self.driver, mP.ARTICLE).find_elements(By.TAG_NAME, 'p')
             paragraphs = [paragraph[paragraph_num].text for paragraph_num in range(PARAGRAPH_LENGTH)]
-            contents[story_num] = "".join(paragraphs)
+            contents[story_num] = {"".join(paragraphs): links[story_num]}
         return contents
 
     def login(self):
@@ -55,11 +60,17 @@ class Scraper(BaseDriver):
         email_input = wait(self.driver, mP.EMAIL_INPUT)
         _pass = wait(self.driver, mP.PASS_INPUT)
 
+        time.sleep(1)
+
         email_input.send_keys(credentials[0])
         _pass.send_keys(credentials[1])
         _pass.submit()
 
-    # TODO: Find a way to extract headers alongside links and store them
+    # TODO: Find a way to extract links and output them alongside stories in pdf
+
+    # TODO: Figure out the best way to distribute and run program from the command line
+
+    # TODO: Consolidate PageElement class
 
     # TODO: Reformat get_content() & get_stories()  in a more logical and object oriented way, consider refactoring
-    #       reused code into helper funcs in a new class
+    #       eused code into helper funcs in a new class

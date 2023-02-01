@@ -1,15 +1,17 @@
 from scraping.scraper import Scraper
 from scraping.locators import MainPageLocators as mP
 from newsletter_gen.pdf_constructor import generate_newsletter
+from input_handler import get_input
 
 
 def main():
+    category, directory = get_input()
     with Scraper(teardown=True) as scraper:
         scraper.land_first_page()
         scraper.login()
-        scraper.select_category(*mP.EU_MARKETS)
+        scraper.select_category(*category)
         contents = scraper.get_content()
-        generate_newsletter(contents)
+        generate_newsletter(contents, directory=directory)
 
 
 if __name__ == "__main__":

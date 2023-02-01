@@ -5,9 +5,10 @@ class MainPageLocators:
     # Categories
     US_MARKETS = (By.XPATH, "//button[@data-id='/markets/us/']")
     EU_MARKETS = (By.XPATH, "//button[@data-id='/markets/europe/']")
-    MACRO_MATTERs = (By.XPATH, "//button[@data-id='/markets/macromatters/']")
+    MACRO_MATTERS = (By.XPATH, "//button[@data-id='/markets/macromatters/']")
     STOCKS = (By.XPATH, "//button[@data-id='/markets/stocks/']")
     DEALS = (By.XPATH, "//button[@data-id='/markets/deals/']")
+    COMMODITIES = (By.XPATH, "//button[@data-id='/markets/commodities/']")
 
     # Stories
     COLLECTIONS = (By.XPATH, "//ul[contains(@class, 'story-collection__three_columns__2Th0B "
