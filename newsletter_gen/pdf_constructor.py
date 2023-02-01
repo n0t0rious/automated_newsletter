@@ -5,7 +5,7 @@ from fpdf import FPDF
 def generate_newsletter(content: dict, directory: str = None):
     newsletter = FPDF()
     newsletter.add_page()
-    newsletter.add_font("DejaVuSans", "", "./newsletter_gen/DejaVuSans.ttf", uni=True)
+    newsletter.add_font("DejaVuSans", "", "/Users/gregflorea/PycharmProjects/automated_newsletter/newsletter_gen/DejaVuSans.ttf", uni=True)
     newsletter.set_font('DejaVuSans', size=8)
     for story_num, text in content.items():
         newsletter.multi_cell(

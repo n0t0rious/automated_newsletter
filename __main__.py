@@ -5,13 +5,14 @@ from input_handler import get_input
 
 
 def main():
-    category, directory = get_input()
+    # category, directory = get_input()
     with Scraper(teardown=True) as scraper:
         scraper.land_first_page()
         scraper.login()
-        scraper.select_category(*category)
+        # scraper.select_category(*category)
+        scraper.select_category(*mP.STOCKS)
         contents = scraper.get_content()
-        generate_newsletter(contents, directory=directory)
+        generate_newsletter(contents, directory='/Users/gregflorea/Desktop/pdf_test/')
 
 
 if __name__ == "__main__":

@@ -32,18 +32,11 @@ class Scraper(BaseDriver):
     # TODO fix href locator to only pull relevant link
     def get_stories(self):
         collection = wait(self.driver, mP.COLLECTIONS).find_elements(By.TAG_NAME, 'li')
-        links = tuple((story.find_element(By.TAG_NAME, 'a').get_attribute('href') for story in collection))
+        links = tuple((story.find_element(By.CSS_SELECTOR, 'a[data-testid="Heading"]'
+                                          ).get_attribute('href') for story in collection))
         return links
 
     def get_content(self):
-        # contents = {}
-        # links = self.get_stories()
-        # for story_num, link in enumerate(links):
-        #     self.land_page(link)
-        #     paragraph = wait(self.driver, mP.ARTICLE).find_elements(By.TAG_NAME, 'p')
-        #     paragraphs = [paragraph[paragraph_num].text for paragraph_num in range(PARAGRAPH_LENGTH)]
-        #     contents[story_num] = "".join(paragraphs)
-        # return contents
         contents = {}
         links = self.get_stories()
         for story_num, link in enumerate(links):
