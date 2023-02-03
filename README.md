@@ -37,7 +37,7 @@ Example:
 
 # Disclaimer
 
-**Scraping content from the Reuters.com is against their TOS, this repo is soley for educational/demonstrative purposes.  I have no affiliation with Reuters.com and neither I nor the this script are held liable for any consequences resulting from its use in a practical setting.**
+**Scraping content from the Reuters.com is against their TOS, this repo is soley for educational/demonstrative purposes.  I have no affiliation with Reuters.com and neither I nor the this script are held liable for any consequences resulting from this scripts use in a practical setting.**
 ---------------------------------
  ### Reuters TOS
  *8. Restrictions on Use*
