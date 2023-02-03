@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class PageElement:
+class Element:
     locator = ''
 
     def __set__(self, obj, value):

@@ -10,6 +10,10 @@ class BaseDriver:
     def __init__(self):
         self.options = Options()
         self.options.add_argument("--incognito")
+        self.options.add_argument("start-maximized")
+        self.options.add_experimental_option("excludeSwitches", ["enable-logging"])
+        self.options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        self.options.add_experimental_option('useAutomationExtension', False)
         self.options.add_experimental_option('detach', True)
         self.driver = webdriver.Chrome(options=self.options)
         self.driver.maximize_window()

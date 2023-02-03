@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 class MainPageLocators:
-    # Categories
+    # Category locators
     US_MARKETS = (By.XPATH, "//button[@data-id='/markets/us/']")
     EU_MARKETS = (By.XPATH, "//button[@data-id='/markets/europe/']")
     MACRO_MATTERS = (By.XPATH, "//button[@data-id='/markets/macromatters/']")
@@ -10,13 +10,12 @@ class MainPageLocators:
     DEALS = (By.XPATH, "//button[@data-id='/markets/deals/']")
     COMMODITIES = (By.XPATH, "//button[@data-id='/markets/commodities/']")
 
-    # Stories
+    # Content locators
     COLLECTIONS = (By.XPATH, "//ul[contains(@class, 'story-collection__three_columns__2Th0B "
                              "story-collection__list__2M49i')]")
     ARTICLE = (By.XPATH, "//div[contains(@class, 'article-body__content__17Yit paywall-article')]")
+    STORIES = (By.CSS_SELECTOR, 'a[data-testid="Heading"]')
 
-    # Login
-    SIGN_IN = (By.XPATH, '//a[@href="https://www.reuters.com/signin/?redirect=https%3A%2F%2Fwww.reuters.com%2Fmarkets'
-                         '%2F"]')
+    # Login locators
     PASS_INPUT = (By.NAME, 'password')
     EMAIL_INPUT = (By.NAME, 'email')

@@ -26,4 +26,3 @@ def get_input():
             break
 
     return categories[category], directory
-

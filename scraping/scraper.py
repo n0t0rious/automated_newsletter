@@ -2,10 +2,10 @@ import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from scraping.basedriver import BaseDriver
+from scraping.constants import PARAGRAPH_LENGTH, LOGIN_URL
+from scraping.element import wait
 from scraping.locators import MainPageLocators as mP
 from scraping.login_handler import retrieve_credentials
-from scraping.element import wait
-from scraping.constants import PARAGRAPH_LENGTH
 
 
 class Scraper(BaseDriver):
@@ -20,7 +20,7 @@ class Scraper(BaseDriver):
         if self.teardown:
             self.driver.quit()
 
-    def land_first_page(self):
+    def land_homepage(self):
         self.driver.get(self.url)
 
     def land_page(self, url: str):
@@ -29,11 +29,9 @@ class Scraper(BaseDriver):
     def select_category(self, *category: tuple):
         wait(self.driver, category).send_keys(Keys.RETURN)
 
-    # TODO fix href locator to only pull relevant link
     def get_stories(self):
         collection = wait(self.driver, mP.COLLECTIONS).find_elements(By.TAG_NAME, 'li')
-        links = tuple((story.find_element(By.CSS_SELECTOR, 'a[data-testid="Heading"]'
-                                          ).get_attribute('href') for story in collection))
+        links = tuple((story.find_element(*mP.STORIES).get_attribute('href') for story in collection))
         return links
 
     def get_content(self):
@@ -47,7 +45,7 @@ class Scraper(BaseDriver):
         return contents
 
     def login(self):
-        wait(self.driver, mP.SIGN_IN).send_keys(Keys.RETURN)
+        self.land_page(LOGIN_URL)
         credentials = retrieve_credentials()
 
         email_input = wait(self.driver, mP.EMAIL_INPUT)
@@ -59,11 +57,4 @@ class Scraper(BaseDriver):
         _pass.send_keys(credentials[1])
         _pass.submit()
 
-    # TODO: Find a way to extract links and output them alongside stories in pdf
-
-    # TODO: Figure out the best way to distribute and run program from the command line
-
-    # TODO: Consolidate PageElement class
-
-    # TODO: Reformat get_content() & get_stories()  in a more logical and object oriented way, consider refactoring
-    #       eused code into helper funcs in a new class
+        time.sleep(1)
