@@ -31,6 +31,7 @@ Requires 3 environment variables to function, stored in .bash_profile / .zshrc /
 
 After completion a PDF labelled "newsletter {mm-dd-YYYY}" will be generated in the specified directory.  
 
+Example:
 <img src='example_img.png'>
 
 
