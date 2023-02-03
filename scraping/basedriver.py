@@ -1,6 +1,6 @@
-from scraping.constants import BASE_URL
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+from scraping.constants import BASE_URL
 
 
 class BaseDriver:
