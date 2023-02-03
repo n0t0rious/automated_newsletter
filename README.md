@@ -8,7 +8,7 @@ and outputs a small summary of the article along with the link to the article as
 Requires 3 environment variables to function, stored in .bash_profile / .zshrc / or other realevant shell profile. 
 
 - Login:
-  - In order to view multiple stories Reuters requires you to register an account. For order for the script to login, email and password for Reuters.com are are required.
+  - In order to view multiple stories Reuters requires you to register an account. For the script to login, email and password for Reuters.com are are required.
     1. Password: 
     `export RU_PASS="password"`
     2. Email:
