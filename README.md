@@ -5,15 +5,15 @@ and outputs a small summary of the article along with the link to the article as
 
 # Setup 
 
-Requires 3 environment variables to function, stored in .bash_profile / .zshrc / or other realevant shell profile 
+Requires 3 environment variables to function, stored in .bash_profile / .zshrc / or other realevant shell profile. 
 
-- Login
+- Login:
   - In order to view multiple stories Reuters requires you to register an account. For order for the script to login, email and password for Reuters.com are are required.
     1. Password: 
     `export RU_PASS="password"`
     2. Email:
     `export RU_MAIL="email"`
-- PDF generation
+- PDF generation:
   - The PyFPDF Library is configured to use the 'latin-1' codec by default and some articles contain non supported characters. To bypass this, a UTF-8 font is required which can be accesed by the script via an environemnt variable that points to the path of a utf font.
     1. Font:
     `export NEWSLETTER_FONT='/Path/to/UTF-8font/`. 
@@ -21,7 +21,7 @@ Requires 3 environment variables to function, stored in .bash_profile / .zshrc /
 <sub> environments variables are required to be named exactly as show and are case sensitive</sub>   
 # Functionality
 
-2 prompts when script is run 
+2 prompts when script is run:
 1. "Select a category: [ US_MARKETS, EU_MARKETS, MACRO_MATTERS, STOCKS, DEALS, COMMODITIES ]"   
 <sub> input is not case sentivie but requires underscores where applicable, will continue to loop until valid category is given.</sub>   
 2. "Specify a Directory: "  
@@ -29,9 +29,9 @@ Requires 3 environment variables to function, stored in .bash_profile / .zshrc /
 
 # Example Output
 
-After completion a PDF labelled "newsletter {mm-dd-YYYY}" will be generated in the specified directory  
+After completion a PDF labelled "newsletter {mm-dd-YYYY}" will be generated in the specified directory.  
 
-![Imgur](https://imgur.com/a/8dPOTSv.jpg)
+<img src='example_img.png'>
 
 
 # Disclaimer
