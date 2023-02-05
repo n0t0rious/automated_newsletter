@@ -1,5 +1,5 @@
-from packages.scraping.scraper import Scraper
-from packages.newsletter_gen import generate_newsletter
+from scraping.scraper import Scraper
+from newsletter_gen.pdf_constructor import generate_newsletter
 from input_handler import get_input
 
 
