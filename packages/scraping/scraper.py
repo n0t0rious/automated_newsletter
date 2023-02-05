@@ -1,11 +1,11 @@
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from scraping.basedriver import BaseDriver
-from scraping.constants import PARAGRAPH_LENGTH, LOGIN_URL
-from scraping.element import wait
-from scraping.locators import MainPageLocators as mP
-from scraping.login_handler import retrieve_credentials
+from packages.scraping.basedriver import BaseDriver
+from packages.scraping.constants import PARAGRAPH_LENGTH, LOGIN_URL
+from packages.scraping.element import wait
+from packages.scraping.locators import MainPageLocators as mP
+from packages.scraping.login_handler import retrieve_credentials
 
 
 class Scraper(BaseDriver):

@@ -1,6 +1,6 @@
 from datetime import date
 from fpdf import FPDF
-from newsletter_gen.font_directory import retrieve_font
+from packages.newsletter_gen.font_directory import retrieve_font
 
 
 def generate_newsletter(content: dict, directory: str = None):

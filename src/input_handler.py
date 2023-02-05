@@ -1,5 +1,5 @@
 import os
-from scraping.locators import MainPageLocators as mP
+from packages.scraping import MainPageLocators as mP
 
 
 def get_input():
