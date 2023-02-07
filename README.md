@@ -1,6 +1,6 @@
 # Automated Newsletter #
 
-A script that uses Selenium and PyFPDF to scrape Reuters.com for finacial stories in certain categories: [ US Markets, EU Markets, Macro Matters, Stocks, Deals, Commodities ]
+A script that uses Selenium and PyFPDF to scrape Reuters.com for financial stories in certain categories: [ US Markets, EU Markets, Macro Matters, Stocks, Deals, Commodities ]
 and outputs a small summary of the article along with the link to the article as a PDF to a specified directory.
 
 # Setup 
