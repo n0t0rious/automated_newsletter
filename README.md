@@ -18,7 +18,7 @@ Requires 3 environment variables to function, stored in .bash_profile / .zshrc /
     1. Font:
     `export NEWSLETTER_FONT='/Path/to/UTF-8font/`. 
     
-<sub> environments variables are required to be named exactly as show and are case sensitive</sub>   
+<sub> environments variables are required to be named exactly as shown and are case sensitive</sub>   
 # Functionality
 
 2 prompts when script is run:
